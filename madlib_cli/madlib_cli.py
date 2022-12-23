@@ -26,10 +26,9 @@ def read_template(file):
 
 
 def parse_template(string):
-    words = tuple(re.findall(r"{([^{}]*)}", string))
-    for x in words:
-        string = string.replace(x, "")
-        return string, words
+    words = tuple(re.findall(r"{([\w ',.-]+)}", string))
+    strings = re.sub(r"{([\w ',.-]+)}", '{}', string)
+    return strings, words
 
 
 def merge(stripped, inputs):
